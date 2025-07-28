@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: Virtual Client
+  data:
+    mongodb:
+      database: loans_db
+      #uri: mongodb+srv://test:Test123456@test.wpur67o.mongodb.net/loans_db?retryWrite=true&retryReads=true&w=majority
+      uri: mongodb://localhost:27017/loans_db?retryWrite=true&retryReads=true&w=majority

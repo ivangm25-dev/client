@@ -1,0 +1,312 @@
+swagger: '2.0'
+info:
+  version: 1.0.0
+  title: Virtual Client.
+  description: Basic Api for list client.
+host: "localhost:8080"
+basePath: "/api/v1"
+schemes:
+  - "http"
+paths:
+  /client:
+
+    get:
+      description: Returns a list of clients.
+      responses:
+        200:
+          description: Successful
+          schema:
+            description: List Objects ResponseClientDTO.
+            type: "array"
+            items:
+              $ref: "#/definitions/ResponseClientDTO"
+        400:
+          description: Bad Request
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/ErrorMessageDTO"
+        500:
+          description: Internal Error
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/ErrorMessageDTO"
+
+    post:
+      description: Create new client.
+      parameters:
+        - name: client
+          in: body
+          description: Object RequestClientDTO
+          required: true
+          schema:
+            items:
+              $ref: "#/definitions/RequestClientDTO"
+      responses:
+        201:
+          description: Successful
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/ResponseClientDTO"
+        400:
+          description: Bad Request
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/ErrorMessageDTO"
+        500:
+          description: Internal Error
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/ErrorMessageDTO"
+
+    put:
+      description: Update Client.
+      parameters:
+        - name: client
+          in: body
+          description: RequestClientDTO
+          required: true
+          schema:
+            items:
+              $ref: "#/definitions/RequestClientDTO"
+      responses:
+        200:
+          description: Successful
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/ResponseClientDTO"
+        400:
+          description: Bad Request
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/ErrorMessageDTO"
+        500:
+          description: Internal Error
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/ErrorMessageDTO"
+
+  /client/{clientId}:
+    get:
+      description: Delete Client By Id.
+      parameters:
+        - name: clientId
+          in: path
+          type: string
+          required: true
+
+      responses:
+        200:
+          description: Successful
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/MessageDTO"
+        400:
+          description: Bad Request
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/ErrorMessageDTO"
+        500:
+          description: Internal Error
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/ErrorMessageDTO"
+  /loan:
+
+    get:
+      description: Returns a list of loans.
+      responses:
+        200:
+          description: Successful
+          schema:
+            description: List Objects ResponseLoansDTO.
+            type: "array"
+            items:
+              $ref: "#/definitions/ResponseLoanDTO"
+        400:
+          description: Bad Request
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/ErrorMessageDTO"
+        500:
+          description: Internal Error
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/ErrorMessageDTO"
+
+    post:
+      description: Create new loan.
+      parameters:
+        - name: loan
+          in: body
+          description: Object RequestLoanDTO
+          required: true
+          schema:
+            items:
+              $ref: "#/definitions/RequestLoanDTO"
+      responses:
+        201:
+          description: Successful
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/ResponseLoanDTO"
+        400:
+          description: Bad Request
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/ErrorMessageDTO"
+        500:
+          description: Internal Error
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/ErrorMessageDTO"
+
+    put:
+      description: Update Loan.
+      parameters:
+        - name: loan
+          in: body
+          description: RequestLoanDTO
+          required: true
+          schema:
+            items:
+              $ref: "#/definitions/RequestLoanDTO"
+      responses:
+        200:
+          description: Successful
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/ResponseLoanDTO"
+        400:
+          description: Bad Request
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/ErrorMessageDTO"
+        500:
+          description: Internal Error
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/ErrorMessageDTO"
+
+  /loan/{loanId}:
+    get:
+      description: Delete Loan By Id.
+      parameters:
+        - name: loanId
+          in: path
+          type: string
+          required: true
+
+      responses:
+        200:
+          description: Successful
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/MessageDTO"
+        400:
+          description: Bad Request
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/ErrorMessageDTO"
+        500:
+          description: Internal Error
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/ErrorMessageDTO"
+
+definitions:
+  RequestLoanDTO:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+      monto:
+        type: "number"
+      clienteId:
+        type: "string"
+      fecha:
+        type: "string"
+      estado:
+        type: "string"
+
+  ResponseLoanDTO:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+      monto:
+        type: "number"
+      clienteId:
+        type: "string"
+      fecha:
+        type: "string"
+      estado:
+        type: "string"
+      pagoFinal:
+        type: "number"
+      tasaInteres:
+        type: "integer"
+        format: "int32"
+
+  RequestClientDTO:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+      email:
+        type: "string"
+      nombre:
+        type: "string"
+      edad:
+        type: "integer"
+        format: "int32"
+      tipoCliente:
+        type: "string"
+
+  ResponseClientDTO:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+      email:
+        type: "string"
+      nombre:
+        type: "string"
+      edad:
+        type: "integer"
+        format: "int32"
+      tipoCliente:
+        type: "string"
+      descuento:
+        type: "boolean"
+  MessageDTO:
+    type: "object"
+    properties:
+      message:
+        type: "string"
+  ErrorMessageDTO:
+    type: "object"
+    properties:
+      message:
+        type: "string"
